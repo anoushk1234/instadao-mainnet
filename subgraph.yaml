@@ -1,0 +1,23 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DaoFactory
+    network: mainnet
+    source:
+      address: "0x6cfa18a6e2A4Dc5e6d00e9037ab545eA60c12Ff8"
+      abi: DaoFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - tokencreated
+      abis:
+        - name: DaoFactory
+          file: ./abis/DaoFactory.json
+      eventHandlers:
+        - event: tokencreated(address,address,string,string,uint256,string,uint256,string)
+          handler: handletokencreated
+      file: ./src/mapping.ts
